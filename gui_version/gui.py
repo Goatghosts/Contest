@@ -4,12 +4,15 @@ from tkinter import *
 from tkinter.ttk import *
 from tkinter import scrolledtext
 
+import os 
+
 from tkinter import Tk, Label, Button, StringVar
 
 alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 class GUI:
 	def __init__(self, master):
+		self.THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
 		self.master = master
 		master.title("Design Code & Robots Contest alpha v 0.01")
 		master.geometry('1280x720')
@@ -34,7 +37,7 @@ class GUI:
 		random.shuffle(self.memebers_list)
 		groups_list = self.make_groups(self.memebers_list, int(self.combo.get()))
 		msg = ''
-		with open("output.txt", "w", encoding="utf-8") as out:
+		with open(os.path.join(self.THIS_FOLDER, "output.txt"), "w", encoding="utf-8") as out:
 			for i, group in enumerate(groups_list):
 				line = f"\nГРУППА {alphabet[i]}:\n"
 				msg += line
@@ -48,7 +51,7 @@ class GUI:
 
 	def read_file(self, file):
 		lines = []
-		for line in open(file, "r"):
+		for line in open(os.path.join(self.THIS_FOLDER, "input.txt"), "r"):
 			lines.append(line.strip())
 		return lines
 
