@@ -1,7 +1,7 @@
 import random
 from math import ceil
 
-GROUPS = 4
+GROUPS = 5
 
 def make_groups(memebers, groups_count):
 	group_len = ceil(len(memebers)/groups_count)
